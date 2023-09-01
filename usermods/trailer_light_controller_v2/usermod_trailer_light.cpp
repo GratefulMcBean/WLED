@@ -7,11 +7,11 @@
 #include <wled.h>
 
 #ifndef LEFT_PIN
-    #define LEFT_PIN 14
+    #define LEFT_PIN=15    ; this is Q1 on the QuinLED-Dig-Uno and Quad
 #endif
 
 #ifndef RIGHT_PIN
-    #define RIGHT_PIN 12
+    #define RIGHT_PIN=12   ; this is Q2 on the QuinLED-Dig-Uno and Quad
 #endif
 
 class UsermodTrailerLight : public Usermod {
