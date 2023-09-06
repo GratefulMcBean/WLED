@@ -15,12 +15,12 @@ class Animated_Staircase : public Usermod {
 
     /* configuration (available in API and stored in flash) */
     bool enabled = false;                   // Enable this usermod
-    unsigned long segment_delay_ms = 150;   // Time between switching each segment
-    unsigned long on_time_ms       = 30000; // The time for the light to stay on
-    int8_t topPIRorTriggerPin      = -1;    // disabled
-    int8_t bottomPIRorTriggerPin   = -1;    // disabled
-    int8_t topEchoPin              = -1;    // disabled
-    int8_t bottomEchoPin           = -1;    // disabled
+    unsigned long segment_delay_ms = 90;    // Time between switching each segment
+    unsigned long on_time_ms       = 17000; // The time for the light to stay on
+    int8_t topPIRorTriggerPin      = 12;    // specified Q2 from QuinLED boards
+    int8_t bottomPIRorTriggerPin   = 15;    // specified Q1 from QuinLED boards
+    int8_t topEchoPin              = -1;    // -1 is disabled
+    int8_t bottomEchoPin           = -1;    // -1 is disabled
     bool useUSSensorTop            = false; // using PIR or UltraSound sensor?
     bool useUSSensorBottom         = false; // using PIR or UltraSound sensor?
     unsigned int topMaxDist        = 50;    // default maximum measured distance in cm, top
@@ -275,14 +275,18 @@ class Animated_Staircase : public Usermod {
         DEBUG_PRINTLN(F(" seconds."));
 
         if (!useUSSensorBottom)
-          pinMode(bottomPIRorTriggerPin, INPUT_PULLUP);
+          //change from INPUT_PULLUP to INPUT for AM312 sensor
+          //pinMode(bottomPIRorTriggerPin, INPUT_PULLUP);
+          pinMode(bottomPIRorTriggerPin, INPUT);
         else {
           pinMode(bottomPIRorTriggerPin, OUTPUT);
           pinMode(bottomEchoPin, INPUT);
         }
 
         if (!useUSSensorTop)
-          pinMode(topPIRorTriggerPin, INPUT_PULLUP);
+          //change from INPUT_PULLUP to INPUT for AM312 sensor
+          //pinMode(topPIRorTriggerPin, INPUT_PULLUP);
+          pinMode(topPIRorTriggerPin, INPUT);
         else {
           pinMode(topPIRorTriggerPin, OUTPUT);
           pinMode(topEchoPin, INPUT);
